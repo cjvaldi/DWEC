@@ -967,12 +967,49 @@ Seguro que las habéis visto alguna vez en Internet y aunque son útiles, no es 
 
 Para saber más
 
-Mapas.
+Mapas.  https://developer.mozilla.org/es/search?q=Map  
+        https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+        https://www.freecodecamp.org/espanol/news/javascript-map-como-utilizar-la-funcion-js-map-metodo-de-arreglo/
 
-Conjuntos.
+Conjuntos. https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Set
 
-Iteradores, iterables y generadores.
+Iteradores, iterables y generadores. https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Iterators_and_Generators
 
-Funciones Flecha.
+Funciones Flecha.  https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 
-Try Catch
+Try Catch  https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/try...catch
+
+5.- Enlaces de refuerzo y ampliación.
+
+Para saber más
+
+Arrays en JavaScript :
+Arrays
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+
+Metodos de Array en JavaScript: 
+Métodos del array.
+https://www.w3schools.com/js/js_array_methods.asp
+
+Más de Arrays.
+https://www.w3schools.com/jsref/jsref_obj_array.asp
+
+JavaScript Functions: 
+http://www.w3schools.com/js/js_functions.asp
+
+Detalles del modo estricto:
+Modo estricto.
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Strict_mode
+
+JSON: JavaScript Object Notation.:
+Introducción a la notación JSON.
+https://www.w3schools.com/js/js_json_intro.asp
+
+Ámbito de las funciones (Funciones anidadas):
+Closures.
+https://www.w3schools.com/js/js_function_closures.asp
+
+Propiedades y funciones globales JavaScript:
+Más Funciones.
+https://www.w3schools.com/jsref/jsref_obj_global.asp
