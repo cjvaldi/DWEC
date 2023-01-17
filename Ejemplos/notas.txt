@@ -681,3 +681,156 @@ Centro ID: 1 - Nombre: IES Ramon Aller Ulloa - Localidad: Lalin - Provincia: Pon
 Centro ID: 3 - Nombre: IES San Clemente - Localidad: Santiago de Compostela - Provincia: A Coruña 
 
 4.- EcmaScript 6.
+
+4.1- Clases.
+
+En el siguiente código vemos lo sencillo y similar que es al Java el modelo de clases.
+
+class clase {
+    metodo() {
+        // ......
+    }
+    toString() { // Este método devuelve una propiedad.
+        return ("El valor de la propiedad es" + this.propiedad);
+    }
+}
+
+// A la hora de crear el objeto vamos a tener el mismo funcionamiento que en las formas anteriores
+miclase = new Clase();
+document.write(miclase)
+
+No existen ni métodos privados, ni podemos realizar sobrecarga. Si que se permite la herencia y se añaden constructores y un intento de encapsulamiento que veremos en los siguientes puntos.
+
+4.1.1.- Constructor.
+
+A partir de ES6 se soluciona permitiendo incluir todo el código de incialización en un método llamado constructor. 
+
+class serVivo {
+    constructor(peso) {
+        this.peso = peso;
+    }
+    toString() {
+        return "El peso es " + this.peso + "<br>";
+    }
+}
+
+// A la hora de crear el objeto vamos a tener el mismo funcionamiento que en las formas anteriores.
+bicho = new serVivo(1);
+document.write(bicho); // forma correcta de mostrar el objeto con toString(). 
+También podemos usar el objeto arguments para pasar un número no determinado de argumentos. Veámoslo con un ejemplo:
+
+class listaElementos {
+   constructor(lista) {
+        this.miArray=new Array();
+        for ( let i=0; i<  arguments.length ;i++ )   { // let crea una variable local del bloque.     
+               this.miArray.push(arguments[i]); // Se añaden los argumentos al final      
+                }
+        }
+  toString() { 
+         let devolver="";  
+         for (let i=0;i<this.miArray.length;i++) {
+                 devolver+=this.miArray[i];
+         }
+         return (devolver);
+    }
+}
+
+coleccion= new listaElementos("perro","gato","canario");
+document.write (coleccion); // forma correcta de mostrar el objeto con toString().
+ 
+Esto objeto ya existía anteriormente a ES6, pero ahora se puede utilizar con más sentido, ya que las clases tienen pinta de clases y con este objeto podemos simular una sobrecarga de métodos.
+
+4.1.2.- Modelo de Setters y Getters.
+
+class serVivo {
+    constructor(peso) {
+        this._peso = peso;
+    }
+    get peso() {
+        return this._peso;
+    }
+    set peso(nuevoPeso) {
+       if (nuevoPeso>=0) 
+            this._peso = nuevoPeso;
+       else this.peso = 0; // no puede haber peso inferior a 0. 
+    }
+    toString() {
+        return "El peso es " + this.peso + "<br>";
+    }
+}
+
+var bicho = new serVivo(12);
+bicho.peso = 33; // Es realmente un setPeso(33)
+
+Como se puede comprobar aunque es accesible bicho._peso, es mucho mejor usar bicho.peso ya que te permite controlar que no se asigne un peso inferior a 0
+
+otro ejemplo
+Crear getters y setters
+1. Con métodos
+        var obj = {
+        foo:    'this is the value of foo',
+        getFoo: function() {
+                    return this.foo;
+                },
+        setFoo: function(val) {
+                    this.foo = val;
+                }
+        }
+        
+        console.log(obj.getFoo());
+        // "this is the value of foo"
+        
+        obj.setFoo('hello');
+        
+        console.log(obj.getFoo());
+        // "hello"
+
+2. Con palabras clave
+        var obj = {
+        fooVal: 'this is the value of foo',
+        get foo() {
+            return this.fooVal;
+        },
+        set foo(val) {
+            this.fooVal = val;
+        }
+        }
+        
+        console.log(obj.foo);
+        // "this is the value of foo"
+        
+        obj.foo = 'hello';
+        
+        console.log(obj.foo);
+        // "hello"
+
+¿Qué camino es mejor?
+Entonces, puede ver por qué dije que la segunda técnica es más robusta .
+
+ver mas https://www.hongkiat.com/blog/getters-setters-javascript/
+
+4.1.3.- Herencia con extends.
+Al igual que en Java podremos acceder a los métodos del padre usando super.
+
+En el siguiente ejemplo podremos ver el uso de la herencia con super heredando de la clase serVivo:
+
+class vegetal extends serVivo {
+    constructor(peso, altura) {
+        super(peso); // El padre asigna el peso. 
+        this._altura = altura; // La clase hija asigna la altura. 
+    }
+    get altura() {
+        return this._altura;
+    }
+    set altura(nuevaAltura) {
+        this._altura = nuevaAltura;
+    }
+    toString() {
+        let devolver = super.toString();
+        devolver = devolver + "La altura es " + this._altura + "<br>";
+        return (devolver);
+    }
+
+}
+var planta = new vegetal(13, 12);
+document.write(planta);
