@@ -1,0 +1,683 @@
+1.- Estructuras de datos.
+indexación base-cero(0): en este modo, el primer elemento del array será la componente 0, es decir tendrá el índice 0.
+indexación base-uno(1): en este modo, el primer elemento tiene el índice 1.
+indexación base-n(n): este modo, es un modo versátil de indexación, en el que el índice del primer elemento puede ser elegido libremente.
+
+1.1.- Objeto Array.
+En programación, un array se define como una colección ordenada de datos. Lo mejor es que pienses en un array como si fuera una tabla que contiene datos, o también como si fuera una hoja de cálculo.
+
+En la unidad anterior si recuerdas, teníamos colecciones dentro del objeto document. Pues bien, cada una de esas colecciones (anchors[], forms[], links[], e images[]) será un array que contendrá las referencias de todas las anclas, formularios, enlaces e imágenes del documento.
+
+Por ejemplo si tenemos las siguientes variables:
+
+var coche1="Seat";
+var coche2="BMW"; 
+var coche3="Audi"; 
+var coche4="Toyota";
+
+Por ejemplo si tenemos las siguientes variables:
+
+var coche1="Seat";
+var coche2="BMW"; 
+var coche3="Audi"; 
+var coche4="Toyota";
+
+Para crear un objeto array, usaremos el constructor new Array( ). Por ejemplo:
+
+var miarray= new Array();
+
+Por ejemplo, aquí puedes ver como crear un nuevo array que almacene la información de 40 personas:
+
+var personas = new Array(40);
+
+personas[53] =  "Irene Sáinz Veiga";
+longitud = personas.length;      // asignará a la variable longitud el valor 54
+
+Introducir datos en un array
+
+sistemaSolar = new  Array( );
+sistemaSolar[0] = "Mercurio"; sistemaSolar[1] = "Venus"; sistemaSolar[2] = "Tierra";
+sistemaSolar[3] = "Marte"; sistemaSolar[4] = "Jupiter"; sistemaSolar[5] = "Saturno";
+sistemaSolar[6] = "Urano"; sistemaSolar[7] = "Neptuno";
+
+Esta forma es un poco tediosa a la hora de escribir el código, pero una vez que las posiciones del array están cubiertas con los datos, acceder a esa información nos resultará muy fácil:
+
+unPlaneta = sistemaSolar[2];     // almacenará en unPlaneta la cadena "Tierra".
+
+Otra forma de crear el array puede ser mediante el constructor. En lugar de escribir cada sentencia de asignación para cada elemento, lo podemos hacer creando lo que se denomina un "array denso", aportando al constructor array( ), los datos a cubrir separados por comas:
+
+sistemaSolar = new array ("Mercurio","Venus","Tierra","Marte","Jupiter","Saturno","Urano","Neptuno");
+
+sistemaSolar = ["Mercurio","Venus","Tierra","Marte","Jupiter","Saturno","Urano","Neptuno"];
+
+array mixto 
+El formato de creación sería: nombrearray = { "indice1" : valor , indice2 : "valor" , …}
+
+(fíjate que en este caso para definir el array de tipo mixto tendremos que hacerlo comenzando y terminando con llaves { } ). Por ejemplo:
+
+var datos = { "numero": 42, "mes"  : "Junio", "hola" : "mundo", 69 : "96" };
+document.write("<br/>"+datos["numero"]+ " -- " + datos["mes"]+ " -- " + datos["hola"]+ " -- " + datos[69]+ "<br/>");
+
+1.1.2.- Recorrido de un array.
+
+var sistemaSolar = new  Array();
+sistemaSolar[0] = "Mercurio";
+sistemaSolar[1] = "Venus";
+sistemaSolar[2] = "Tierra";
+sistemaSolar[3] = "Marte";
+sistemaSolar[4] = "Jupiter";
+sistemaSolar[5] = "Saturno";
+sistemaSolar[6] = "Urano";
+sistemaSolar[7] = "Neptuno";
+
+Empleando un bucle for, por ejemplo:
+
+for (i=0;i<sistemaSolar.length;i++)
+     document.write(sistemaSolar[i] + "<br/>");
+
+Empleando un bucle while, por ejemplo:
+
+var i=0;
+while (i < sistemaSolar.length)
+{
+     document.write(sistemaSolar[i] + "<br/>");
+     i++;
+} 
+Empleando la sentencia for  in
+
+for (var i in objeto)
+     sentencias
+Esta sentencia repite la variable indicada, sobre todos los valores de las propiedades del objeto.  Dentro de las sentencias i contiene el índice con el que acceder.
+
+Es realmente útil ya que nos permite conocer las propiedades y métodos de cualquier objeto de JavaScript.
+
+Ejemplo:
+
+for (var i in screen)
+     document.write("Propiedad" + i +" y valor " +" screen[i] " +"<br />");
+
+1.1.3.- Borrado de elementos en un array.
+
+Para borrar cualquier dato almacenado en un elemento del array, lo podrás hacer ajustando su valor a null o a una cadena vacía "".
+
+Hasta que apareció el operador delete en las versiones más modernas de navegadores, no se podía eliminar completamente una posición del array.
+
+Al borrar un elemento del array, se eliminará su índice en la lista de índices del array, pero no se reducirá la longitud del array. Por ejemplo en las siguientes instrucciones:
+
+elarray.length;          //  resultado: 8
+delete elarray[5];
+elarray.length;          //  resultado: 8
+elarray[5];          //  resultado:  undefined
+
+El operador delete es compatible a partir de estas versiones : WinIE4 + , MacIE4 + , NN4 + , Moz + , Safari + , Opera + , Chrome +.
+
+Ejemplo de uso del operador delete:
+
+Si consideramos el siguiente array denso:
+
+var  oceanos = new  array("Atlantico","Pacifico","Artico","Indico");
+Esta clase de array asigna automáticamente índices numéricos a sus entradas, para poder acceder posteriormente a los datos, como por ejemplo con un bucle:
+
+for  (var  i=0; i < oceanos.length;  i++)
+{
+     if  (oceanos[i] == "Atlantico")
+     {
+          //  instrucciones a realizar..
+     }
+}
+Si ejecutamos la instrucción:
+
+delete oceanos[2];
+Se producirán los siguientes cambios: en primer lugar el tercer elemento del array ("Artico"), será eliminado del mismo, pero la longitud del array seguirá siendo la misma, y el array quedará tal y como:
+
+oceanos[0] = "Atlantico";
+oceanos[1] = "Pacifico";
+oceanos[3] = "Indico";
+
+Si intentamos referenciar oceanos[2] nos devolverá un resultado indefinido (undefined).
+
+Si queremos eliminar la tercera posición y que el array reduzca su tamaño podríamos hacerlo con la instrucción:
+
+oceanos.splice(2,1); // las posiciones del array resultante serán 0, 1 y 2.
+El operador delete, se recomienda para arrays que usen texto como índices del array, ya que de esta forma se producirán menos confusiones a la hora de borrar los elementos.
+
+1.1.4.- Propiedades y métodos.
+
+Propiedades del objeto Array
+
+Propiedad	Descripción
+constructor	Devuelve la función que creó el prototipo del objeto array.
+length	    Ajusta o devuelve el número de elementos en un array.
+prototype	Te permite añadir propiedades y métodos a un objeto
+
+Métodos del objeto Array
+Métodos	Descripción
+concat()	Une dos o más arrays, y devuelve una copia de los arrays unidos.
+join()	    Une todos los elementos de un array en una cadena de texto.
+pop()	    Elimina el último elemento de un array y devuelve ese elemento.
+push()	    Añade nuevos elementos al final de un array, y devuelve la nueva longitud.
+reverse()	Invierte el orden de los elementos en un array.
+shift()	    Elimina el primer elemento de un array, y devuelve ese elemento.
+slice()	    Selecciona una parte de un array y devuelve el nuevo array.
+sort()	    Ordena los elementos de un array.
+splice()	Añade/elimina elementos a un array.
+toString()	Convierte un array a una cadena y devuelve el resultado.
+unshift()	Añade nuevos elementos al comienzo de un array, y devuelve la nueva longitud.
+valueOf()	Devuelve el valor primitivo de un array.
+
+Ejemplo de algunos métodos del objeto array:
+
+Método reverse():
+
+<script>
+     var frutas = ["Plátano", "Naranja", "Manzana", "Melocotón"];
+     document.write(frutas.reverse());          // Imprimirá:  Melocotón,Manzana,Naranja,Plátano 
+</script> 
+
+
+Método slice():
+
+<script>
+   var frutas = ["Plátano", "Naranja", "Manzana", "Melocotón"];
+   document.write(frutas .slice(0,1) + "<br />");     // imprimirá: Plátano
+   document.write(frutas .slice(1) + "<br />");          // imprimirá: Naranja,Manzana,Melocotón
+   document.write(frutas .slice(-2) + "<br />");          // imprimirá: Manzana, Melocotón
+   document.write(frutas + "<br />");               // imprimirá: Plátano,Naranja,Manzana,Melocotón 
+</script>
+Métodos push()y pop()
+
+// Con la estructura array se pueden implementar pilas (o incluso colas con el uso de shift y unshift)
+// Las pilas son arrays LIFO donde se añaden elementos a continuación de la máxima posición del array.
+<script>
+   var miPila=["elemento 1","elemento 2"];
+   var valor1=prompt("Dime un dato");
+   var valor2=prompt("Dime otro dato");
+   miPila.push(valor1);
+   miPila.push(valor2);
+   console.log("La pila después de añadir"+miPila);
+   // Ahora se elimina el elemento que está en la posición final
+   var cabecera=miPila.pop();
+  console.log("Se saca la cabecera "+cabecera); // Se puede ver que se guarda la cabecera y ya se puede hacer algo con ese dato. 
+  console.log("La pila después de eliminar"+miPila);
+</script>
+
+1.2.- Arrays paralelos.
+
+Cuando tenemos dos o más arrays, que utilizan el mismo índice para referirse a términos homólogos, se denominan arrays paralelos.
+
+Por ejemplo consideremos los siguientes arrays:
+
+var profesores = ["Cristina","Catalina","Vieites","Benjamin"];
+var asignaturas=["Seguridad","Bases de Datos","Sistemas Informáticos","Redes"];
+var alumnos=[24,17,28,26];
+
+<script>
+   var profesores = ["Cristina","Catalina","Vieites","Benjamin"];
+   var asignaturas=["Seguridad","Bases de Datos","Sistemas Informáticos","Redes"];
+   var alumnos=[24,17,28,26];
+   function imprimeDatos(indice)
+   {
+        document.write("<br/>"+profesores[indice]+" del módulo de "+asignaturas[indice]+", tiene "+alumnos[indice]+" alumnos en clase.");
+   }     
+   for (i=0;i<profesores.length;i++)
+   {
+        imprimeDatos(i);
+   }
+</script>
+
+Éste será el resultado que obtendremos de la aplicación anterior:
+
+Cristina del módulo de Seguridad, tiene 24 alumnos en clase.
+Catalina del módulo de Bases de Datos, tiene 17 alumnos en clase.
+Vieites del módulo de Sistemas Informáticos, tiene 28 alumnos en clase.
+Benjamin del módulo de Redes, tiene 26 alumnos en clase. 
+
+1.3.- Arrays multidimensionales.
+
+Una alternativa a los arrays paralelos es la simulación de un array multidimensional. Si bien es cierto que en JavaScript los arrays son uni-dimensionales, podemos crear arrays que en sus posiciones contengan otros arrays u otros objetos. Podemos crear de esta forma arrays bidimensionales, tridimensionales, etc.
+
+Por ejemplo podemos realizar el ejemplo anterior creando un array bidimensional de la siguiente forma:
+
+var datos = new Array();
+datos[0] = new Array("Cristina","Seguridad",24);
+datos[1] = new Array("Catalina","Bases de Datos",17);
+datos[2] = new Array("Vieites","Sistemas Informáticos",28);
+datos[3] = new Array("Benjamin","Redes",26);
+
+ó bien usando una definición más breve y literal del array:
+
+var datos = [
+          ["Cristina","Seguridad",24],
+          ["Catalina","Bases de Datos",17],
+          ["Vieites","Sistemas Informáticos",28],
+          ["Benjamin","Redes",26]
+      ];
+
+Por ejemplo:
+
+document.write("<br/>Quien imparte Bases de Datos? "+datos[1][0]);          // Catalina
+document.write("<br/>Asignatura de Vieites: "+datos[2][1]);               // Sistemas Informaticos
+document.write("<br/>Alumnos de Benjamin: "+datos[3][2]);          // 26
+Si queremos imprimir toda la información del array multidimensional, tal y como hicimos en el apartado anterior podríamos hacerlo con un bucle for:
+
+for (i=0;i<datos.length;i++)
+{
+     document.write("<br/>"+datos[i][0]+" del módulo de "+datos[i][1]+", tiene "+datos[i][2]+" alumnos en clase.");          
+}
+Obtendríamos como resultado:
+
+Cristina del módulo de Seguridad, tiene 24 alumnos en clase.
+Catalina del módulo de Bases de Datos, tiene 17 alumnos en clase.
+Vieites del módulo de Sistemas Informáticos, tiene 28 alumnos en clase.
+Benjamin del módulo de Redes, tiene 26 alumnos en clase. 
+
+Para crear un array multidimensional  10x10  e inicializarlo podríamos utilizar el siguiente código:
+
+    var datos = new Array(10);
+        for ( i = 0; i < datos.length; i++)
+        {
+            datos[i]=new Array(10);
+            for (j = 0; j < datos[i].length ; j++)
+            {
+                datos[i][j]=j;
+                document.write(datos[i][j]+" ");                               
+            }
+            document.write("<br />");
+        }   
+
+También podríamos imprimir todos los datos de los arrays dentro de una tabla:
+
+document.write("<table border=1>");
+for (i = 0; i< datos.length; i++)
+{
+     document.write("<tr>");
+     for (j = 0; j< datos[i].length; j++)
+     {
+          document.write("<td>"+datos[i][j]+"</td>");
+     }
+     document.write("</tr>");
+}     
+document.write("</table>")
+
+2.- Creación de funciones.
+
+function nombreFunción ( [parámetro1]....[parámetroN] )
+{
+     // instrucciones
+}
+
+Si nuestra función va a devolver algún valor emplearemos la palabra reservada return, para hacerlo. Ejemplo:
+
+function nombreFunción ( [parámetro1]....[parámetroN] )
+{
+     // instrucciones
+     return valor;
+}
+
+Para realizar una llamada a una función lo podemos hacer con:
+
+nombreFuncion( );  // Esta llamada ejecutaría las instrucciones programadas dentro de la función.
+
+Otro ejemplo de uso de una función en una asignación:
+
+variable=nombreFuncion( );  // En este caso la función devolvería un valor que se asigna a la variable.
+
+2.1.- Parámetros.
+
+Veamos el siguiente ejemplo:
+
+function saludar(a,b)
+{
+     alert("Hola " + a + " y "+ b +".");
+}
+Si llamamos a esa función desde el código:
+
+saludar("Martin","Silvia");      //Mostraría una alerta con el texto: Hola Martin y Silvia.
+
+Otro ejemplo de función que devuelve un valor:
+
+function devolverMayor(a,b)
+{
+     var devolver;
+     if (a > b) 
+          devolver=a;
+     else
+          devolver=b;
+
+     return (devolver);
+
+}
+
+
+Ejemplo de utilización de la función anterior:
+
+document.write ("El número mayor entre 35 y 21 es el: " + devolverMayor(35,21) + "."); 
+
+2.2.- Ámbito de las variables.
+
+Ejemplo de variables locales y globales:
+
+/// Uso de variables locales y globales no muy recomendable, ya que estamos empleando el mismo nombre de variable en global y en local.
+var  chica  =  "Aurora";           // variable global
+var  perros  =  "Lacky, Samba y Ronda";       // variable global
+function  demo()
+{
+     //  Definimos una variable local (fíjate que es obligatorio para las variables locales usar var) 
+     //  Esta variable local tendrá el mismo nombre que otra variable global pero con distinto contenido.
+     // Si no usáramos var estaríamos modificando la variable global chica.
+     var  chica  =  "Raquel";     // variable local
+     document.write( "<br/>"+ perros +"  no pertenecen a "+ chica +".");
+}
+// Llamamos a la función para que use las variables locales.
+demo();
+//  Utilizamos las variables globales definidas al comienzo.
+document.write( "<br/>"+ perros +"  pertenecen a "+ chica +".");
+
+Como resultado obtenemos:
+
+  Lacky, Samba y Ronda no pertenecen a Raquel.
+  Lacky, Samba y Ronda pertenecen a Aurora.
+
+2.3.- Funciones anidadas.
+
+La estructura de las funciones anidadas será algo así:
+
+function  principalA()
+{
+// instrucciones
+     function  internaA1()
+     {
+          // instrucciones     
+     }
+// instrucciones
+}
+function  principalB()
+{
+     // instrucciones
+     function  internaB1()
+     {
+          // instrucciones
+     }
+     function  internaB2()
+     {
+          // instrucciones
+     }
+     // instrucciones
+}
+
+Ejemplo de una función anidada:
+
+function hipotenusa(a, b) 
+{
+   function cuadrado(x) 
+     { 
+          return x*x; 
+     }
+   return Math.sqrt(cuadrado(a) + cuadrado(b));
+}
+document.write("<br/>La hipotenusa de 1 y 2 es: "+hipotenusa(1,2));
+// Imprimirá: La hipotenusa de 1 y 2 es: 2.23606797749979 
+
+2.4.- Funciones predefinidas del lenguaje.
+
+Propiedades globales en JavaScript
+Propiedad	Descripción
+Infinity	Un valor numérico que representa el infinito positivo/negativo.
+NaN	        Valor que no es numérico "Not a Number".
+undefined()	Indica que a esa variable no le ha sido asignado un valor.
+
+Funciones globales en JavaScript.
+
+Función	    Descripción
+decodeURI()	Decodifica los caracteres especiales de una URL excepto: , / ? : @ & = + $ #
+decodeURIComponent()	Decodifica todos los caracteres especiales de una URL.
+encodeURI()	Codifica los caracteres especiales de una URL excepto: , / ? : @ & = + $ #
+encodeURIComponent()	Codifica todos los caracteres especiales de una URL.
+escape()	Codifica caracteres especiales en una cadena, excepto: * @ - _ + . /
+eval()	    Evalúa una cadena y la ejecuta si contiene código u operaciones.
+isFinite()	Determina si un valor es un número finito válido.
+isNaN()	    Determina cuando un valor no es un número.
+Number()	Convierte el valor de un objeto a un número.
+String()    Convierte el valor de un objeto a String.
+parseFloat()	Convierte una cadena a un número real.
+parseInt()	Convierte una cadena a un entero.
+unescape()	Decodifica caracteres especiales en una cadena, excepto: * @ - _ + . /
+
+Ejemplo de la función eval():
+
+<script type="text/javascript">
+     eval("x=50;y=30;document.write(x*y)");     // Imprime 1500
+     document.write("<br />" + eval("8+6"));      // Imprime 14
+     document.write("<br />" + eval(x+30));       // Imprime 80
+</script> 
+
+3.- Creación de objetos a medida.
+
+function Coche( )
+{
+     // propiedades y métodos
+}
+
+var unCoche = new Coche( );
+
+La palabra reservada new se emplea para crear objetos en JavaScript. Al crear la variable unCoche, técnicamente podríamos decir que hemos creado una instancia de la clase Coche, o que hemos instanciado el objeto Coche, o que hemos creado un objeto Coche, etc. Es decir hay varias formas de expresarlo, pero todas quieren decir lo mismo.
+
+ejemplo
+function Alumno(nombre,curso,numMaterias) {
+         this.alumno = nombre;
+         this.curso = curso;
+         this.materias = numMaterias;
+         this.precioCurso = matricula;
+         this.precioBeca = beca;
+         }
+function matricula() {
+         precio = 100*this.materias;
+         return precio
+         }	
+function beca(num){
+         precio = 100*this.materias;
+         descuento = precio*num/100;
+         precioFinal = precio - descuento;
+         return precioFinal;
+         } 
+alumno1 = new Alumno ("Juan Perez","tecnología",5);
+nombre1 = "alumno: "+alumno1.alumno;
+curso1 = " curso: "+alumno1.curso;
+materias1 = " con "+alumno1.materias+" asignaturas.";
+precio1 = " precio: " +alumno1.precioCurso()+ "�.";
+beca1 = " Precio de becario: " +alumno1.precioBeca(15)+"�.";
+alert(nombre1 + curso1 + materias1 + precio1 + beca1 ); 
+
+****   prototype  info externa
+
+asignar nuevas propiedades
+
+Podemos asignar nuevas propiedades a un objeto, tanto si este esta predefinido en javascript, como si está definido por nosotros, con la propiedad prototype.
+
+En el ejemplo que vamos a seguir aquí veremos cómo una función en blanco, es decir sin ningún código, se convierte en función constructor al asignarle propiedades y métodos mediante la propiedad prototype. partimos de la siguiente función:
+
+function Calcular() { }
+
+Como ves, esta es una función sin código, pero ahora mediante la propiedad prototype convertiremos esta función en un constructor. Le asignaremos en principio dos propiedades. Para ello en primer lugar definiremos dos variables, que serán los valores por defecto de las dos propiedades:
+
+a = 0; b = 0;
+
+Después mediante la propiedad prototype asignamos estos valores como propiedades de la función anterior.
+
+Calcular.prototype.n1 = a;
+Calcular.prototype.n2 = b;
+
+Donde n1 y n2 son los nombres de las propiedades de la función Calcular.
+
+Para comprobar que la función Calcular es ahora un constructor, y tiene las propiedades n1 y n2, escribimos lo siguiente:
+
+calculo = new Calcular();
+alert(calculo.n1+ " , "+calculo.n2);
+
+3.1.- Definición de propiedades.
+
+Una vez que ya sabemos como crear un constructor para un objeto, vamos a ver cómo podemos crear una propiedad específica para ese objeto. Las propiedades para nuestro objeto se crearán dentro del constructor empleando para ello la palabra reservada this. Véase el siguiente ejemplo:
+
+function Coche( )
+{
+     // Propiedades
+     this.marca =  "Audi A6";
+     this.combustible =  "diesel";
+     this.cantidad = 0;          // Cantidad de combustible en el depósito.
+}
+
+La palabra reservada this, se utiliza para hacer referencia al objeto actual, que en este caso será el objeto que está siendo creado por el constructor. Por lo tanto, usarás this, para crear nuevas propiedades para el objeto. El único problema con el ejemplo anterior es, que todos los coches que hagamos del tipo Coche será siempre Audi A6, diésel, y sin litros de combustible en el depósito. Por ejemplo;
+
+var cocheDeMartin = new Coche( );
+var cocheDeSilvia = new Coche( );
+A partir de ahora, si no modificamos las propiedades del coche de Martin y de Silvia, en el momento de instanciarlos tendrán ambos un Audi A6 a diésel y sin combustible en el depósito.
+
+Lo ideal sería por lo tanto que en el momento de instanciar un objeto de tipo Coche, que le digamos al menos la marca de coche y el tipo de combustible que utiliza. Para ello tenemos que modificar el constructor, que quedará de la siguiente forma:
+
+function Coche(marca, combustible)
+{
+     // Propiedades
+     this.marca =  marca;
+     this.combustible =  combustible;
+     this.cantidad = 0;          // Cantidad de combustible inicial por defecto en el depósito.     
+}
+Ahora sí que podríamos crear dos tipos diferentes de coche:
+
+var cocheDeMartin = new Coche("Volkswagen Golf","gasolina");
+var cocheDeSilvia = new Coche("Mercedes SLK","diesel");
+Y también podemos acceder a las propiedades de esos objetos, consultar sus valores o modificarlos. Por ejemplo:
+
+document.write("<br/>El coche de Martin es un: "+cocheDeMartin.marca+" a "+cocheDeMartin.combustible);
+document.write("<br/>El coche de Silvia es un: "+cocheDeSilvia.marca+" a "+ cocheDeSilvia.combustible);
+// Imprimirá:
+// El coche de Martin es un: Volkswagen Golf a gasolina
+// El coche de Silvia es un: Mercedes SLK a diesel 
+// Ahora modificamos la marca y el combustible del coche de Martin:
+cocheDeMartin.marca = "BMW X5";
+cocheDeMartin.combustible = "diesel";
+document.write("<br/>El coche de Martin es un: " + cocheDeMartin.marca + " a " + cocheDeMartin.combustible);
+// Imprimirá: El coche de Martin es un: BMW X5 a diesel 
+
+3.2.- Definición de métodos.
+Las propiedades son solamente la mitad de la ecuación de la Orientación a Objetos en JavaScript. La otra mitad son los métodos, que serán funciones que se enlazarán a los objetos, para que dichas funciones puedan acceder a las propiedades de los mismos.
+
+Nos definimos un ejemplo de método, que se podría utilizar en la clase Coche:
+
+function rellenarDeposito (litros)
+{
+     // Modificamos el valor de la propiedad cantidad de combustible
+     this.cantidad = litros;
+}
+
+Fíjate que el método rellenarDeposito, que estamos programando a nivel global, hace referencia a la propiedad this.cantidad para indicar cuantos litros de combustible le vamos a echar al coche. Lo único que faltaría aquí es realizar la conexión entre el método rellenarDeposito y el objeto de tipo Coche (recuerda que los objetos podrán tener propiedades y métodos y hasta este momento sólo hemos definido propiedades dentro del constructor). Sin esta conexión la palabra reservada this no tiene sentido en esa función, ya que no sabría cuál es el objeto actual. Veamos cómo realizar la conexión de ese método, con el objeto dentro del constructor:
+
+function Coche(marca, combustible)
+{
+     // Propiedades
+     this.marca =  marca;
+     this.combustible =  combustible;
+     this.cantidad = 0;          // Cantidad de combustible inicial por defecto en el depósito.     
+     // Métodos
+     this.rellenarDeposito = rellenarDeposito;
+}
+
+
+Aquí se ve de forma ilustrada, que los métodos son en realidad propiedades: se declaran igual que las propiedades, por lo que son enmascarados como propiedades en JavaScript. Hemos creado una nueva propiedad llamada rellenarDeposito y se le ha asociado el método rellenarDeposito. Es muy importante destacar que el método rellenarDeposito() se referencia sin paréntesis dentro del constructor, this.rellenarDeposito = rellenarDeposito.
+
+Ejemplo de uso del método anterior:
+
+cocheDeMartin.rellenarDeposito(35);
+document.write("<br/>El coche de Martin tiene "+cocheDeMartin.cantidad+ " litros de " + cocheDeMartin.combustible+ " en el depósito.");
+// Imprimirá
+// El coche de Martin tiene 35 litros de diesel en el depósito. 
+La forma en la que hemos definido el método rellenarDeposito a nivel global, no es la mejor práctica en la programación orientada a objetos. Una mejor aproximación sería definir el contenido de la función rellenarDeposito dentro del constructor, ya que de esta forma los métodos al estar programados a nivel local aportan mayor privacidad y seguridad al objeto en general, por ejemplo:
+
+function Coche(marca, combustible)
+{
+     // Propiedades
+     this.marca =  marca;
+     this.combustible =  combustible;
+     this.cantidad = 0;
+     // Métodos
+     this.rellenarDeposito = function (litros)
+     {
+          this.cantidad=litros;
+     };
+}
+JavaScript es muy flexible y podríamos añadir más propiedades y métodos después de la definición. Aunque esto no es algo recomendado en el código va a servir para comprender la necesidad de prototype.
+
+ Lo primero que haremos será crear un nuevo coche y después le añadiremos el método que es llamado desde document.write para poder escribir los contenidos de un objeto:  toString .
+
+  var micoche= new Coche("Honda", "120");
+       document.write(micoche); // Sale Object.
+       micoche.toString = function () {
+            return ( this.marca + " " + this.combustible + " " + this.cantidad );
+       }
+  document.write(micoche); // Sale el contenido.
+Ahora bien, se presenta otro problema, para cada objeto que creemos hay que añadir esta función. De hecho cada objeto usa memoria para cada función repitiéndose una y otra vez. Para solucionarlo se puede utilizar el objeto prototype.
+
+ El objeto prototype se encuentra en cualquier objeto de JavaScript y con él se puede añadir métodos nuevos a cualquier objeto e incluso implementar herencia.
+
+Veamos un ejemplo de uso en el que se añade el método toString.
+
+       micoche= new Coche("Honda", "120");
+       document.write(micoche); // Sale Object.
+       Coche.prototype.toString = function () {
+            return ( this.marca + " " + this.combustible + " " + this.cantidad );
+       }
+       document.write(micoche); // Sale el contenido.
+
+3.3.- Definición de objetos literales.
+
+Por ejemplo:
+
+avion = { marca:"Boeing" , modelo:"747" , pasajeros:"450" };
+
+Es equivalente a:
+var avion = new Object();
+avion.marca = "Boeing";
+avion.modelo = "747";
+avion.pasajeros = "450";
+
+Para referirnos desde JavaScript a una propiedad del objeto avión podríamos hacerlo con:
+
+document.write(avion.marca);  // o trambién se podría hacer con:
+document.write(avion["modelo"]);
+
+Podríamos tener un conjunto de objetos literales simplemente creando un array que contenga en cada posición una definición de objeto literal:
+
+var datos=[
+{"id":"2","nombrecentro":"IES A Piringalla" ,"localidad":"Lugo","provincia":"Lugo"},
+{"id":"10","nombrecentro":"IES As Fontiñas","localidad":"Santiago","provincia":"A Coruña"},
+{"id":"9","nombrecentro":"IES As Lagoas","localidad":"Ourense","provincia":"Ourense"},
+{"id":"8","nombrecentro":"IES Cruceiro Baleares","localidad":"Culleredo","provincia":"A Coruña"},
+{"id":"6","nombrecentro":"IES Cruceiro Baleares","localidad":"Culleredo","provincia":"A 
+Coruña"},{"id":"4","nombrecentro":"IES de Teis","localidad":"Vigo","provincia":"Pontevedra"},
+{"id":"5","nombrecentro":"IES Leliadoura","localidad":"Ribeira","provincia":"A Coruña"},
+{"id":"7","nombrecentro":"IES Leliadoura","localidad":"Ribeira","provincia":"A Coruña"},
+{"id":"1","nombrecentro":"IES Ramon Aller Ulloa","localidad":"Lalin","provincia":"Pontevedra"},
+{"id":"3","nombrecentro":"IES San Clemente","localidad":"Santiago de Compostela","provincia":"A Coruña"}
+];
+De la siguiente forma se podría recorrer el array de datos para mostrar su contenido:
+
+for (var i=0; i< datos.length; i++)
+{
+     document.write("Centro ID: "+datos[i].id+" - ");
+     document.write("Nombre: "+datos[i].nombrecentro+" - ");
+     document.write("Localidad: "+datos[i].localidad+" - ");
+     document.write("Provincia: "+datos[i].provincia+"<br/>");
+}
+Y obtendríamos como resultado:
+
+Centro ID: 2 - Nombre: IES A Piringalla - Localidad: Lugo - Provincia: Lugo
+Centro ID: 10 - Nombre: IES As Fontiñas - Localidad: Santiago - Provincia: A Coruña
+Centro ID: 9 - Nombre: IES As Lagoas - Localidad: Ourense - Provincia: Ourense
+Centro ID: 8 - Nombre: IES Cruceiro Baleares - Localidad: Culleredo - Provincia: A Coruña
+Centro ID: 6 - Nombre: IES Cruceiro Baleares - Localidad: Culleredo - Provincia: A Coruña
+Centro ID: 4 - Nombre: IES de Teis - Localidad: Vigo - Provincia: Pontevedra
+Centro ID: 5 - Nombre: IES Leliadoura - Localidad: Ribeira - Provincia: A Coruña
+Centro ID: 7 - Nombre: IES Leliadoura - Localidad: Ribeira - Provincia: A Coruña
+Centro ID: 1 - Nombre: IES Ramon Aller Ulloa - Localidad: Lalin - Provincia: Pontevedra
+Centro ID: 3 - Nombre: IES San Clemente - Localidad: Santiago de Compostela - Provincia: A Coruña 
+
+4.- EcmaScript 6.

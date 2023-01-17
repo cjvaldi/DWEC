@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Método reverse(): -->
+    <script>
+      var frutas = ["Plátano", "Naranja", "Manzana", "Melocotón"];
+      document.write(frutas.reverse() + "<br/>"); // Imprimirá:  Melocotón,Manzana,Naranja,Plátano
+    </script>
+    <!-- Método slice(): -->
+    <script>
+      var frutas = ["Plátano", "Naranja", "Manzana", "Melocotón"];
+      document.write(frutas.slice(0, 1) + "<br />"); // imprimirá: Plátano
+      document.write(frutas.slice(1) + "<br />"); // imprimirá: Naranja,Manzana,Melocotón
+      document.write(frutas.slice(-2) + "<br />"); // imprimirá: Manzana, Melocotón
+      document.write(frutas + "<br />"); // imprimirá: Plátano,Naranja,Manzana,Melocotón
+    </script>
+    <!-- Métodos push()y pop() -->
+
+    <!-- // Con la estructura array se pueden implementar pilas (o incluso colas con el uso de shift y unshift) -->
+    <!-- // Las pilas son arrays LIFO donde se añaden elementos a continuación de la máxima posición del array. -->
+    <script>
+      var miPila = ["elemento 1", "elemento 2"];
+    //   var valor1 = prompt("Dime un dato");
+    //   var valor2 = prompt("Dime otro dato");
+      miPila.push(valor1);
+      miPila.push(valor2);
+      console.log("La pila después de añadir" + miPila);
+      // Ahora se elimina el elemento que está en la posición final
+      var cabecera = miPila.pop();
+      console.log("Se saca la cabecera " + cabecera); // Se puede ver que se guarda la cabecera y ya se puede hacer algo con ese dato.
+      console.log("La pila después de eliminar" + miPila);
+    </script>
+    <!-- 1.2.- Arrays paralelos. -->
+    <script>
+      var profesores = ["Cristina", "Catalina", "Vieites", "Benjamin"];
+      var asignaturas = [
+        "Seguridad",
+        "Bases de Datos",
+        "Sistemas Informáticos",
+        "Redes",
+      ];
+      var alumnos = [24, 17, 28, 26];
+      function imprimeDatos(indice) {
+        document.write(
+          "<br/>" +
+            profesores[indice] +
+            " del módulo de " +
+            asignaturas[indice] +
+            ", tiene " +
+            alumnos[indice] +
+            " alumnos en clase."
+        );
+      }
+      for (i = 0; i < profesores.length; i++) {
+        imprimeDatos(i);
+      }
+    </script>
+    <!-- // arrays  -->
+    <script>
+      var datos = new Array(10);
+      for ( i = 0; i < datos.length; i++)
+        {
+            datos[i]=new Array(10);
+            for (j = 0; j < datos[i].length ; j++)
+            {
+                datos[i][j]=j;
+                document.write(datos[i][j]+" ");                               
+            }
+            document.write("<br />");
+        }  
+    //   También podríamos imprimir todos los datos de los arrays dentro de una tabla:10
+
+      document.write("<table border=1>");
+      for (i = 0; i < datos.length; i++) {
+        document.write("<tr>");
+        for (j = 0; j < datos[i].length; j++) {
+          document.write("<td>" + datos[i][j] + "</td>");
+        }
+        document.write("</tr>");
+      }
+      document.write("</table>");
+    </script>
+    <script>
+        var datos=[
+            {"id":"2","nombrecentro":"IES A Piringalla" ,"localidad":"Lugo","provincia":"Lugo"},
+            {"id":"10","nombrecentro":"IES As Fontiñas","localidad":"Santiago","provincia":"A Coruña"},
+            {"id":"9","nombrecentro":"IES As Lagoas","localidad":"Ourense","provincia":"Ourense"},
+            {"id":"8","nombrecentro":"IES Cruceiro Baleares","localidad":"Culleredo","provincia":"A Coruña"},
+            {"id":"6","nombrecentro":"IES Cruceiro Baleares","localidad":"Culleredo","provincia":"A Coruña"},
+            {"id":"4","nombrecentro":"IES de Teis","localidad":"Vigo","provincia":"Pontevedra"},
+            {"id":"5","nombrecentro":"IES Leliadoura","localidad":"Ribeira","provincia":"A Coruña"},
+            {"id":"7","nombrecentro":"IES Leliadoura","localidad":"Ribeira","provincia":"A Coruña"},
+            {"id":"1","nombrecentro":"IES Ramon Aller Ulloa","localidad":"Lalin","provincia":"Pontevedra"},
+            {"id":"3","nombrecentro":"IES San Clemente","localidad":"Santiago de Compostela","provincia":"A Coruña"}
+        ];
+// De la siguiente forma se podría recorrer el array de datos para mostrar su contenido:
+
+for (var i=0; i< datos.length; i++)
+{
+     document.write("Centro ID: "+datos[i].id+" - ");
+     document.write("Nombre: "+datos[i].nombrecentro+" - ");
+     document.write("Localidad: "+datos[i].localidad+" - ");
+     document.write("Provincia: "+datos[i].provincia+"<br/>");
+}
+    </script>
+
+    <script>
+        // 4.1.1.- Constructor.
+        class listaElementos {
+            constructor(lista) {
+                this.miArray = new Array();
+                for (let i = 0; i < arguments.length; i++) { // let crea una variable local del bloque.     
+                    this.miArray.push(arguments[i]); // Se añaden los argumentos al final      
+                }
+            }
+            toString() {
+                let devolver = "";
+                for (let i = 0; i < this.miArray.length; i++) {
+                    devolver += this.miArray[i] + " ";
+                }
+                return (devolver);
+            }
+        }
+
+        coleccion = new listaElementos("perro", "gato", "canario");
+        document.write(coleccion); // forma correcta de mostrar el objeto con toString().
+    </script>
+    <script>
+        // 4.1.2.- Modelo de Setters y Getters.
+        class serVivo {
+            constructor(peso) {
+                this._peso = peso;
+            }
+            get peso() {
+                return this._peso;
+            }
+            set peso(nuevoPeso) {
+                if (nuevoPeso >= 0)
+                    this._peso = nuevoPeso;
+                else this.peso = 0; // no puede haber peso inferior a 0. 
+            }
+            toString() {
+                return "El peso es " + this.peso + "<br>";
+            }
+        }
+
+        var bicho = new serVivo(12);
+        bicho.peso = 33; // Es realmente un setPeso(33)
+        document.writeln(bicho.peso);
+        document.writeln(bicho.toString());
+
+    </script>
+
+  </body>
+</html>
