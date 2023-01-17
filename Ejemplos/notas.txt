@@ -834,3 +834,145 @@ class vegetal extends serVivo {
 }
 var planta = new vegetal(13, 12);
 document.write(planta);
+
+4.1.4.- Métodos estáticos.
+
+La palabra clave static nos permite crear un método accesible aunque la clase no haya sido instanciada.
+
+Una de las clases que te van a servir para enteder este sistema es Math  ya nos permite usar su métodos sin crear ninguna instancia. Por ejemplo Math.pow(2,2).
+
+static se escribe justo antes de la declaración del método. Veamos un ejemplo.
+
+class Mates {
+    static areaCuadrado (lado)  {
+        return(lado*lado);
+    }
+   static areaRectángulo (base, altura) {
+        return (base*altura);
+    }
+}
+
+console.log(Mates.areaCuadrado(2)); 
+ 
+Para terminar static no se puede utilizar en variables directamente.  Aunque podemos utilizarla con get  en los métodos.
+
+static get PI() {
+    return 3.14;
+}
+
+https://desarrolloweb.com/articulos/static-clases-javascript-es6.html
+
+4.2.- Módulos.
+
+ES6 ha creado nuevos tipos de  forma de declarar variables.
+
+const variable=valor. Asigna un valor a una variable y no permite reasignarlo. Se suele utilizar para cuando lees un valor de teclado y quieres asegurarte de que no sea modificado. El ámbito es el del bloque.
+
+let variable. Crear una variable pero teniendo el ámbito de esa variable el bloque donde se ha creado.  No pasa como con var que lo creamos en un bucle y se puede utilizar en cualquier parte produciendo el fenómeno llamado hoisting que nos permite utilizar una variable antes de ser declarada.
+
+El siguiente código importa una funcionalidad a tu archivo principal html.
+
+        <script type="module">
+        // Se importa desde el archivo html que usa la funcionalidad. 
+        import {
+            comprobarDNI
+        } from 'momodulo.js';
+        funcionPublica("Haz algo");
+      </script>
+ 
+ 
+Es muy importante que el el código en el HTML desde el que utilicéis módulos tenga incluido type="module".  Si no no funcionará. 
+
+Este segundo trozo de código es el archivo que se va a importar.
+
+// archivo mimodulo.js
+export function funcionPublica(valor) {  
+    let devolver=funcionPrivada(valor); //  Aquí compruebas que la letra es correcta. 
+    return (devolver);
+}
+// La siguiente función no puede ser llamada desde el archivo que la importa ya que no tiene import. 
+function funcionaPrivada(valor) {
+    let devolver; // variable para devolver.
+    // Aquí el calculo
+    // .......
+    return (devolver);
+}
+
+Así como puede verse, en vez de usar <script src="fuente.js"> , se utiliza import para añadir la funcionalidad. Eso si, no te olvides de poner en el archivo que importa los módulos  <script type="module"> . Si no lo haces tendrás muchos problemas.
+
+ 
+
+Podemos exportar tanto variables, como funciones o clases.
+
+
+Si quisiésemos importar varias funciones o clases deberíamos separarlas por comas.
+
+import {  area, perimetro } from 'circulo';
+Con import se puede cambiar el nombre a una función evitando de esa forma colisiones del módulo con funciones del tuyo.
+
+ import { 
+            comprobarDNI as DNItester
+        } from 'miOtroModulo.js';
+ 
+Los módulos deben tener extensión js. 
+
+
+A la hora de escribir en el documento puedes tener problemas. Para ello te recomiendo que uses un código similar al siguiente:
+
+<p id="salida">
+Este contenido va a ser cambiado. 
+</p>
+
+<script type="module">
+        // Si document.write no te sirve puedes poner resultado
+        resultados=funcion(parametros);
+        document.getElementById("salida").innerHTML="Aquí dentro el código HTML que quiero mostrar el resultado que es: "+resultados+"<br>";
+</script>
+
+
+var, let, const. Diferencias.
+Resumen
+var declara una variable de scope global o local para la función sin importar el ámbito de bloque. Permite hoisting.
+let declara una variable de scope global, local para la función o de bloque. Es reasignable y no permite hoisting.
+const declara una variable de scope global, local para la función o de bloque. No es reasignable, pero es mutable. No permite hoisting.
+En general, let sería todo lo que se necesita dentro de un bloque, función o ámbito global. const sería para variables que no van sufrir una reasignación. var se puede relegar para cuando necesitemos hacer hoisting, vamos, casi nunca.
+
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/export
+
+4.3.- Otras novedades.
+
+ES6 añadió un nuevo tipo de bucle: for of.
+
+A diferencia del for in permite obtener el contenido de un array , cadena, mapa o conjunto sin tener el índice del mismo.
+
+miArray=new Array("Casa","Coche","Piscina");
+for (contenido of miArray) {
+    document.write ( contenido +  " ");
+}
+// Al final podrás ver en la pantalla "Casa Coche Piscina".
+Esto se puede extender a los objetos personales utilizando iteradores, iterables y generadores, pero que aquí no vamos a ver porque su uso es limitado y son bastante complejos para un curso como éste. Además la filosofía tiende a ser de un lenguaje funcional y no de un lenguaje con objetos como el que estamos viendo en este módulo.
+
+Los objetos set (conjuntos) y map (mapas) fueron introducidos en la versión ES5, pero han dado el salto de usabilidad en la versión 6. 
+
+Flecha señalando a la derecha.
+DrTrigonBot. Flecha (CC BY-SA)
+
+Otra de las novedades de ES6 que tampoco vamos a tratar son las funciones flecha (arrow también conocidas como lambdas en Java y otros lenguajes). Sin meternos en complicaciones, son funciones declaradas de esta forma curiosa: argumentos => { sentencias } Veamos un ejemplo sencillo para realizar el cuadrado de un número.
+
+var cuadrado = (x) => { return x*x; };
+document.write("El cuadrado de 2 es:" + cuadrado(2));
+Las funciones flecha se deriva de los lenguajes funcionales. Pero últimamente se están añadiendo a todos los lenguajes orientados a objetos (incluso C++).
+
+Seguro que las habéis visto alguna vez en Internet y aunque son útiles, no es necesario conocerlas para programar en JavaScript siendo realmente útiles en el lenguaje derivado TypeScript (pero eso es otra cuestión).
+
+Para saber más
+
+Mapas.
+
+Conjuntos.
+
+Iteradores, iterables y generadores.
+
+Funciones Flecha.
+
+Try Catch
